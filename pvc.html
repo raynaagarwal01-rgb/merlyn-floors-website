@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravishing Floors</title>
+    <link rel="stylesheet" href="stylepvc.css"/>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.PNG" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+    <a href="#">Products ▼</a>
+
+    <ul class="dropdown-content">
+        <li><a href="carpet.html">CARPET TILES</a></li>
+        <li><a href="wall.html">WALL TO WALL CARPET</a></li>
+        <li><a href="lvt.html">LVT FLOORING</a></li>
+        <li><a href="sports.html">SPORTS FLOORING</a></li>
+        <li><a href="gym.html">GYM FLOORING</a></li>
+        <li><a href="grass.html">ARTIFICIAL GRASS</a></li>
+        <li><a href="pvc.html">PVC MAT</a></li>
+    </ul>
+</li>
+            <li><a href="projects.html">Our Projects</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="catalogues.html">Catalogues</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="pvc-bg">
+
+    <section class="pvc-hero">
+
+        <div class="pvc-left">
+
+            <img src="images/Endura(2).png" class="hero-logo">
+
+            <h1>PVC MATS</h1>
+
+            <p>
+                Engineered for performance and built to last, Endura PVC Anti-Skid Mats are designed to deliver superior safety, durability, and comfort across a wide range of environments. Crafted from high-quality PVC compounds, these mats provide excellent grip and stability, effectively reducing the risk of slips and falls in both wet and dry conditions.
+            </p>
+
+        </div>
+
+        <div class="pvc-right">
+            <img src="images/Home pic.png"
+                 alt="PVC Mats"
+                 ondblclick="openGallery(pvcImages,0)">
+        </div>
+    </section>
+
+    <section class="applications-section">
+
+        <h2>APPLICATIONS</h2>
+
+        <div class="application-grid">
+
+            <div class="application-card">
+                <img src="images/Bathrooom_Wash Areas.jpg"
+                     ondblclick="openGallery(applicationImages,0)">
+                <p>Bathrooom/Wash Areas</p>
+            </div>
+
+            <div class="application-card">
+                <img src="images/Outdoor_Landscaping Areas.png"
+                     ondblclick="openGallery(applicationImages,1)">
+                <p>Outdoor/Landscaping Areas</p>
+            </div>
+
+            <div class="application-card">
+                <img src="images/Poolside Walkways.png"
+                     ondblclick="openGallery(applicationImages,2)">
+                <p>Poolside Walkways</p>
+            </div>
+
+            <div class="application-card">
+                <img src="images/Entrance.png"
+                     ondblclick="openGallery(applicationImages,3)">
+                <p>Entrance</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+
+        <h2>KEY FEATURES</h2>
+
+        <div class="features-box">
+
+            <div class="feature-column">
+
+                <ul>
+                    <li>Anti-Skid Surface: Enhanced grip ensures maximum safety in high-traffic and moisture-prone areas</li>
+                    <li>Water & Weather Resistant: Performs efficiently in indoor and outdoor conditions</li>
+                    <li>Low Maintenance: Easy to clean and quick-drying design</li>
+                    <li>Versatile Applications: Suitable for homes, offices, hotels, hospitals, gyms, and industrial spaces</li>
+                    <li>Comfort Underfoot: Cushioned texture reduces fatigue during prolonged standing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+
+        <h2>PRODUCTS</h2>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+                <img src="images/Cushion Mat Heavy Duty.png"
+                     ondblclick="openGallery(productsImages,0)">
+                <p>Cushion Mat Heavy</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Cushion Mat Standard Duty.png"
+                     ondblclick="openGallery(productsImages,1)">
+                <p>Cushion Mat Standard</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/S-Mat Heavy Duty.png"
+                     ondblclick="openGallery(productsImages,2)">
+                <p>S-Mat Heavy</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/S-Mat Standard Duty.png"
+                     ondblclick="openGallery(productsImages,3)">
+                <p>S-Mat Standard</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="button-section">
+        <a href="cata/ENDURA.pdf"
+           download
+           class="catalogue-btn">
+            Download Catalogue
+        </a>
+
+        <a href="contact.html"
+           class="next-btn">
+            Contact Us →
+        </a>
+    </section>
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <img id="modalImg" class="modal-image">
+    <button class="next" onclick="changeSlide(1)">❯</button>
+
+    <a id="downloadBtn"
+       class="download-popup"
+       download>
+       Download Image
+    </a>
+
+</div>
+
+<script>
+
+function showTab(tabId, element){
+
+    document.querySelectorAll(".tab-content").forEach(tab=>{
+        tab.style.display = "none";
+        tab.classList.remove("active-content");
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    const selectedTab = document.getElementById(tabId);
+
+selectedTab.style.display = "block";
+selectedTab.classList.add("active-content");
+
+window.scrollTo({
+    top: selectedTab.offsetTop - 120,
+    behavior: "smooth"
+});
+
+    if(element){
+        element.classList.add("active");
+    }
+}
+
+const productsImages = [
+    "images/Cushion Mat Heavy Duty.png",
+"images/Cushion Mat Standard Duty.png",
+"images/S-Mat Heavy Duty.png",
+"images/S-Mat Standard Duty.png"
+];
+
+const applicationImages = [
+    "images/Bathrooom_Wash Areas.jpg",
+"images/Outdoor_Landscaping Areas.png",
+"images/Poolside Walkways.png",
+"images/Entrance.png"
+];
+
+let currentGallery = [];
+let currentIndex = 0;
+
+function openGallery(images,index){
+    currentGallery = images;
+    currentIndex = index;
+    document.getElementById("imageModal").style.display = "flex";
+    document.getElementById("modalImg").src =
+    currentGallery[currentIndex];
+    document.getElementById("downloadBtn").href =
+    currentGallery[currentIndex];
+}
+
+function changeSlide(direction){
+    currentIndex += direction;
+    if(currentIndex >= currentGallery.length){
+        currentIndex = 0;
+    }
+    if(currentIndex < 0){
+        currentIndex = currentGallery.length - 1;
+    }
+    document.getElementById("modalImg").src =
+    currentGallery[currentIndex];
+    document.getElementById("downloadBtn").href =
+    currentGallery[currentIndex];
+}
+
+function closeModal(){
+    document.getElementById("imageModal").style.display =
+    "none";
+}
+
+window.onclick = function(event){
+    let modal = document.getElementById("imageModal");
+    if(event.target == modal){
+        modal.style.display = "none";
+    }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravishing Floors</title>
+    <link rel="stylesheet" href="stylegrass.css"/>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.PNG" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+    <a href="#">Products ▼</a>
+
+    <ul class="dropdown-content">
+        <li><a href="carpet.html">CARPET TILES</a></li>
+        <li><a href="wall.html">WALL TO WALL CARPET</a></li>
+        <li><a href="lvt.html">LVT FLOORING</a></li>
+        <li><a href="sports.html">SPORTS FLOORING</a></li>
+        <li><a href="gym.html">GYM FLOORING</a></li>
+        <li><a href="grass.html">ARTIFICIAL GRASS</a></li>
+        <li><a href="pvc.html">PVC MAT</a></li>
+    </ul>
+</li>
+            <li><a href="projects.html">Our Projects</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="catalogues.html">Catalogues</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+
+<div class="grass-bg">
+    <section class="grass-hero">
+        <div class="grass-left">
+            <img src="logo.PNG" class="hero-logo">
+
+            <h1>ARTIFICIAL GRASS</h1>
+
+            <p>
+                Being the pioneers in artificial grass in the country, we bring years of expertise and innovation to deliver high-quality turf solutions for diverse applications. Our commitment to excellence ensures products that combine natural beauty with long-lasting performance.<br>
+
+We offer an extensive range of landscape artificial grass, designed to suit every requirement and budget. From cost-effective options for basic installations to premium, high-density grass that replicates the look and feel of natural lawns, our collection caters to residential, commercial, and decorative landscaping needs.<br>
+
+In addition, we provide specialized sports grass engineered for performance and durability. Ideal for football turfs, multi-sport arenas, schools, and recreational facilities, our sports range ensures optimal cushioning, resilience, and playability.<br>
+            </p>
+
+        </div>
+
+        <div class="grass-right">
+            <img src="images/Main pic - Copy.jpg" alt="Artificial Grass">
+        </div>
+    </section>
+</div>
+
+<section class="applications-section">
+
+    <h2>APPLICATIONS</h2>
+
+    <div class="application-grid">
+
+        <div class="application-card">
+            <img src="images/Outdoor Sports Turf.png"
+            ondblclick="openGallery(grassImages,0)">
+            <p>Outdoor Sports</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Indoor Sports Turf.jpg"
+            ondblclick="openGallery(grassImages,1)">
+            <p>Indoor Sports</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Cafeteria.jpg"
+            ondblclick="openGallery(grassImages,2)">
+            <p>Cafeteria</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Offices.jpg"
+            ondblclick="openGallery(grassImages,3)">
+            <p>Offices</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Kids Play Area.jpg"
+            ondblclick="openGallery(grassImages,4)">
+            <p>Kids Play Area</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Fitness Centres.jpg"
+            ondblclick="openGallery(grassImages,5)">
+            <p>Fitness Centres</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Recreational space.png"
+            ondblclick="openGallery(grassImages,6)">
+            <p>Recreational Space</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Pool Side.jpg"
+            ondblclick="openGallery(grassImages,7)">
+            <p>Pool Side</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Balconies_Terraces.jpg"
+            ondblclick="openGallery(grassImages,8)">
+            <p>Balconies/Terraces</p>
+        </div>
+
+        <div class="application-card">
+            <img src="images/Gardens_Landscaping.png"
+            ondblclick="openGallery(grassImages,9)">
+            <p>Gardens/Landscaping</p>
+        </div>
+    </div>
+</section>
+
+<section class="grass-product">
+    <div class="grass-product-left">
+        <h2>LANDSCAPE GRASS</h2>
+    </div>
+</section>
+
+<section class="spec-section">
+    <h2>Specifications</h2>
+    <img src="images/landscape.png" class="spec-image">
+</section>
+
+<section class="grass-product">
+    <div class="grass-product-left">
+        <h2>EXCLUSIVE LANDSCAPE GRASS</h2>
+    </div>
+</section>
+
+<section class="spec-section">
+    <h2>Specifications</h2>
+    <img src="images/EX.png" class="spec-image">
+</section>
+
+<section class="grass-product">
+    <div class="grass-product-left">
+        <h2>SPORTS GRASS</h2>
+    </div>
+</section>
+
+<section class="spec-section">
+    <h2>Specifications</h2>
+    <img src="images/sportsgrass.png" class="spec-image">
+</section>
+
+<section class="grass-buttons">
+
+    <a href="cata/MERLYN TURF.pdf"
+       download
+       class="catalogue-btn">
+        Download Catalogue <br>
+    </a>
+
+    <div class="next-product-box">
+    <a href="pvc.html" class="next-btn">
+        Explore PVC MAT →
+    </a>
+</div>
+
+</section>
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <img id="modalImg" class="modal-image">
+    <button class="next" onclick="changeSlide(1)">❯</button>
+    <a id="downloadBtn" class="download-popup" download>
+        Download Image
+    </a>
+</div>
+
+<script>
+
+function showTab(tabId, element){
+
+    document.querySelectorAll(".tab-content").forEach(tab=>{
+        tab.style.display = "none";
+        tab.classList.remove("active-content");
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    const selectedTab = document.getElementById(tabId);
+
+selectedTab.style.display = "block";
+selectedTab.classList.add("active-content");
+
+window.scrollTo({
+    top: selectedTab.offsetTop - 120,
+    behavior: "smooth"
+});
+
+    if(element){
+        element.classList.add("active");
+    }
+}
+
+const grassImages = [
+    "images/Outdoor Sports Turf.png",
+"images/Indoor Sports Turf.jpg",
+"images/Cafeteria.jpg",
+"images/Offices.jpg",
+"images/Kids Play Area.jpg",
+"images/Fitness Centres.jpg",
+"images/Recreational space.png",
+"images/Pool Side.jpg",
+"images/Balconies_Terraces.jpg",
+"images/Gardens_Landscaping.png"
+];
+
+let currentGallery = [];
+let currentIndex = 0;
+
+function openGallery(images,index){
+    currentGallery = images;
+    currentIndex = index;
+    document.getElementById("imageModal").style.display = "flex";
+    document.getElementById("modalImg").src =
+    currentGallery[currentIndex];
+    document.getElementById("downloadBtn").href =
+    currentGallery[currentIndex];
+}
+
+function changeSlide(direction){
+    currentIndex += direction;
+    if(currentIndex >= currentGallery.length){
+        currentIndex = 0;
+    }
+    if(currentIndex < 0){
+        currentIndex = currentGallery.length - 1;
+    }
+    document.getElementById("modalImg").src =
+    currentGallery[currentIndex];
+    document.getElementById("downloadBtn").href =
+    currentGallery[currentIndex];
+}
+
+function closeModal(){
+    document.getElementById("imageModal").style.display =
+    "none";
+}
+
+window.onclick = function(event){
+    let modal = document.getElementById("imageModal");
+    if(event.target == modal){
+        modal.style.display = "none";
+    }
+}
+
+</script>
+</body>
+</html>
