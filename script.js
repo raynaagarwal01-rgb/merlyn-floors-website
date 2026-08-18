@@ -1,28 +1,39 @@
-const images = [
-    "1.JPG",
-    "2.jpeg",
-    "3.jpeg",
-    "4.jpg",
-    "5.JPG",
-    "6.jpg",
-    "7.jpg",
-    "8.jpg",
-    "9.jpg",
-    "10.jpg"
-];
+document.addEventListener("DOMContentLoaded", function () {
+    const menuButton = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav-links");
 
-let index = 0;
+    if (menuButton && nav) {
+        menuButton.addEventListener("click", function () {
+            const isOpen = nav.classList.toggle("open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
 
-const dots = document.querySelectorAll(".dot");
+        nav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                nav.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation");
+                menuButton.textContent = "☰";
+            });
+        });
+    }
 
-setInterval(function () {
+    const slide = document.getElementById("slide");
+    const dots = document.querySelectorAll(".dot");
+    if (!slide || !dots.length) return;
 
-    index = (index + 1) % images.length;
+    const images = [
+        "1.JPG", "2.jpeg", "3.jpeg", "4.jpg", "5.JPG",
+        "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"
+    ];
+    let index = 0;
 
-    document.getElementById("slide").src = images[index];
-
-    dots.forEach(dot => dot.classList.remove("active"));
-
-    dots[index].classList.add("active");
-
-}, 3000);
+    setInterval(function () {
+        index = (index + 1) % images.length;
+        slide.src = images[index];
+        dots.forEach(dot => dot.classList.remove("active"));
+        if (dots[index]) dots[index].classList.add("active");
+    }, 3000);
+});
