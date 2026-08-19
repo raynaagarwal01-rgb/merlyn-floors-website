@@ -45,6 +45,9 @@ img, video, iframe { max-width: 100%; }
 @media (min-width: 1025px) {
     .navbar { min-height: 90px; }
     .nav-links { flex-wrap: wrap; align-items: center; }
+    .home { align-items: stretch; }
+    .box { height: auto; min-height: 420px; }
+    .box p { overflow-wrap: anywhere; }
 }
 
 /* TABLET */
