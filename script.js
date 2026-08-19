@@ -2,6 +2,7 @@
 
 const siteNavigation = [
     ["Home", "index.html"],
+    ["Our Projects", "projects.html"],
     ["Our Catalogues", "catalogues.html"],
     ["About Us", "about.html"],
     ["Contact Us", "contact.html"]
