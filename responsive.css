@@ -9,6 +9,17 @@ body {
 
 img, video, iframe { max-width: 100%; }
 
+img[data-src],
+.deferred-image {
+    opacity: 0;
+    background-color: #eef2f7;
+}
+
+.deferred-image.is-loaded {
+    opacity: 1;
+    transition: opacity .22s ease-in;
+}
+
 /* One shared header on every page. This file loads after page-specific CSS. */
 .navbar {
     position: relative;

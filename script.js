@@ -19,41 +19,41 @@ const productNavigation = [
 
 const catalogueSections = [
     { container: ".catalog-container", card: "catalog-card", items: [
-        ["Diva", "images/catalog2.jpg", "cata/diva.pdf"],
-        ["Streamline", "images/Streamline pic.jpg", "cata/Streamline.pdf"],
-        ["Reborn", "images/Rebornn.png", "cata/REBORN.pdf"]
+        ["Diva", "assets/web/catalog2-4b23aa7eca.webp", "cata/diva.pdf"],
+        ["Streamline", "assets/web/streamline-pic-448ab37f15.webp", "cata/Streamline.pdf"],
+        ["Reborn", "assets/web/rebornn-4316ac3f1d.webp", "cata/REBORN.pdf"]
     ] },
     { container: ".catalogs-container", card: "catalogs-card", items: [
-        ["Laylines", "images/LAYLINES pic.png", "cata/LAYLINES.pdf"],
-        ["Appeal", "images/Appeall.png", "cata/appeal.pdf"],
-        ["Embark", "images/catalog3.jpg", "cata/embark.pdf"]
+        ["Laylines", "assets/web/laylines-pic-ed707fd5b5.webp", "cata/LAYLINES.pdf"],
+        ["Appeal", "assets/web/appeall-2e4b31e222.webp", "cata/appeal.pdf"],
+        ["Embark", "assets/web/catalog3-e4fb9022f0.webp", "cata/embark.pdf"]
     ] },
     { container: ".catalogss-container", card: "catalogss-card", items: [
-        ["Tranquil", "images/Tranquil pic.jpg", "cata/TRANQUIL.pdf"],
-        ["Radiance", "images/Radiance.jpg", "cata/RADIANCE.pdf"],
-        ["Graffiti", "images/Graffiti.png", "cata/Graffiti.pdf"]
+        ["Tranquil", "assets/web/tranquil-pic-71b721266c.webp", "cata/TRANQUIL.pdf"],
+        ["Radiance", "assets/web/radiance-08c83beec4.webp", "cata/RADIANCE.pdf"],
+        ["Graffiti", "assets/web/graffiti-3a02d8f426.webp", "cata/Graffiti.pdf"]
     ] },
     { container: ".catalog1-container", card: "catalog1-card", items: [
         ["Vintage", "images/Vintage pic.jpg", "cata/VINTAGE.pdf"],
-        ["Motif", "images/Motif pic.jpg", "cata/MOTIF.pdf"],
-        ["Velvet Sapphire", "images/Velvet sapphire pic.jpg", "cata/VELVET SAPPHIRE.pdf"]
+        ["Motif", "assets/web/motif-pic-8fe5582a6e.webp", "cata/MOTIF.pdf"],
+        ["Velvet Sapphire", "assets/web/velvet-sapphire-pic-efedd34a67.webp", "cata/VELVET SAPPHIRE.pdf"]
     ] },
     { container: ".catalog11-container", card: "catalog11-card", items: [
-        ["Cloud Step", "images/Cloud step pic.jpg", "cata/CLOUDSTEP.pdf"],
-        ["Silky Breeze", "images/Silky breeze pic.jpg", "cata/SILKY BREEZE.pdf"]
+        ["Cloud Step", "assets/web/cloud-step-pic-16319be2c1.webp", "cata/CLOUDSTEP.pdf"],
+        ["Silky Breeze", "assets/web/silky-breeze-pic-652f0f3fbf.webp", "cata/SILKY BREEZE.pdf"]
     ] },
     { container: ".catalog111-container", card: "catalog111-card", items: [
-        ["1.5mm", "images/1.5mm.5mm pic", "cata/IKONIC 1.5mm.pdf"],
-        ["2mm", "images/2mm.jpg", "cata/IKONIC 2MM.pdf"]
+        ["1.5mm", "assets/web/ikonic-1-5mm-catalog.webp", "cata/IKONIC 1.5mm.pdf"],
+        ["2mm", "assets/web/2mm-e8a0142c27.webp", "cata/IKONIC 2MM.pdf"]
     ] },
     { container: ".catalog2-container", card: "catalog2-card", items: [
-        ["RAVEFLEX", "images/Raveflex.png", "cata/RAVEFLEX.pdf"],
-        ["TOPFLEX", "images/Topflex.png", "cata/Topflex Prime.pdf"],
+        ["RAVEFLEX", "assets/web/raveflex-c7050deb02.webp", "cata/RAVEFLEX.pdf"],
+        ["TOPFLEX", "assets/web/topflex-0bf9522c4c.webp", "cata/Topflex Prime.pdf"],
         ["MERLYN TURF", "images/Turf pic.jpg", "cata/MERLYN TURF.pdf"]
     ] },
     { container: ".catalog12-container", card: "catalog12-card", items: [
-        ["SPORTEK", "images/Sportek.jpg", "cata/SPORTEK SPORTS FLOORING.pdf"],
-        ["ENDURA", "images/Endura pic.jpg", "cata/ENDURA.pdf"]
+        ["SPORTEK", "assets/web/sportek-ab5fd71588.webp", "cata/SPORTEK SPORTS FLOORING.pdf"],
+        ["ENDURA", "assets/web/endura-pic-a1777039cd.webp", "cata/ENDURA.pdf"]
     ] }
 ];
 
@@ -129,7 +129,7 @@ function renderCatalogues() {
             const card = document.createElement("div");
             card.className = section.card;
             card.innerHTML = `
-                <img src="${image}" alt="${label} catalogue" loading="lazy" decoding="async">
+                <img data-src="${image}" alt="${label} catalogue" loading="lazy" decoding="async">
                 <b>${label}</b><br><br>
                 <a href="${pdf}" download class="download-btn">Download</a>
             `;
@@ -185,6 +185,47 @@ function improveModals() {
     });
 }
 
+let deferredImageObserver;
+
+function loadDeferredImage(image) {
+    const source = image.dataset.src;
+    if (!source) return;
+
+    image.classList.add("deferred-image");
+    image.addEventListener("load", function () {
+        image.classList.add("is-loaded");
+    }, { once: true });
+    image.addEventListener("error", function () {
+        image.classList.add("is-loaded");
+    }, { once: true });
+    image.src = source;
+    image.removeAttribute("data-src");
+    if (deferredImageObserver) deferredImageObserver.unobserve(image);
+}
+
+function initializeDeferredImages(root = document) {
+    const images = root.querySelectorAll("img[data-src]");
+    if (!images.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+        images.forEach(loadDeferredImage);
+        return;
+    }
+
+    if (!deferredImageObserver) {
+        deferredImageObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) loadDeferredImage(entry.target);
+            });
+        }, { rootMargin: "500px 0px", threshold: 0.01 });
+    }
+
+    images.forEach(function (image) {
+        image.classList.add("deferred-image");
+        deferredImageObserver.observe(image);
+    });
+}
+
 function improveMarkup() {
     document.querySelectorAll("img:not([alt])").forEach(function (image) {
         image.alt = "Ravishing Floors flooring project or product image";
@@ -201,9 +242,12 @@ function improveMarkup() {
         ".tab-content.active-content .main-image"
     );
     priorityImages.forEach(function (image, index) {
+        loadDeferredImage(image);
         image.loading = "eager";
         if (index === 0) image.fetchPriority = "high";
     });
+
+    initializeDeferredImages();
 
     document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
         const rel = new Set((link.getAttribute("rel") || "").split(/\s+/).filter(Boolean));
