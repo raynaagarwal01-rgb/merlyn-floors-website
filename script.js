@@ -2,10 +2,9 @@
 
 const siteNavigation = [
     ["Home", "index.html"],
-    ["Our Projects", "projects.html"],
-    ["Contact Us", "contact.html"],
-    ["Catalogues", "catalogues.html"],
-    ["About Us", "about.html"]
+    ["Our Catalogues", "catalogues.html"],
+    ["About Us", "about.html"],
+    ["Contact Us", "contact.html"]
 ];
 
 const productNavigation = [
@@ -68,21 +67,24 @@ function renderNavigation() {
     if (!navbar) return;
 
     const page = currentPage();
-    const links = siteNavigation.map(([label, href]) => `
+    const links = siteNavigation.slice(1).map(([label, href]) => `
         <li><a href="${href}"${page === href ? ' aria-current="page"' : ""}>${label}</a></li>
     `).join("");
+    const [homeLabel, homeHref] = siteNavigation[0];
+    const productsAreCurrent = productNavigation.some(([, href]) => href === page);
     const products = productNavigation.map(([label, href]) => `
         <li><a href="${href}">${label}</a></li>
     `).join("");
 
     navbar.innerHTML = `
         <div class="logo"><a href="index.html" aria-label="Ravishing Floors home">
-            <img src="logo.PNG" alt="Ravishing Floors logo">
+            <img src="logo.PNG" alt="Ravishing Floors logo" width="246" height="90" decoding="async">
         </a></div>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
         <ul class="nav-links">
+            <li><a href="${homeHref}"${page === homeHref ? ' aria-current="page"' : ""}>${homeLabel}</a></li>
             <li class="dropdown">
-                <button class="products-toggle" type="button" aria-expanded="false">Products <span aria-hidden="true">▼</span></button>
+                <button class="products-toggle" type="button" aria-expanded="false"${productsAreCurrent ? ' aria-current="page"' : ""}>Our Products <span aria-hidden="true">▼</span></button>
                 <ul class="dropdown-content">${products}</ul>
             </li>
             ${links}
@@ -191,6 +193,16 @@ function improveMarkup() {
     document.querySelectorAll("img").forEach(function (image, index) {
         if (index > 1 && !image.hasAttribute("loading")) image.loading = "lazy";
         if (!image.hasAttribute("decoding")) image.decoding = "async";
+    });
+
+    const priorityImages = document.querySelectorAll(
+        ".slider img, .carpet-right img, .grass-right img, .gym-right img, " +
+        ".lvt-right img, .pvc-right img, .sports-right img, .wall-right img, " +
+        ".tab-content.active-content .main-image"
+    );
+    priorityImages.forEach(function (image, index) {
+        image.loading = "eager";
+        if (index === 0) image.fetchPriority = "high";
     });
 
     document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
