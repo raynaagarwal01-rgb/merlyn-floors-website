@@ -193,14 +193,14 @@ function loadDeferredImage(image) {
     if (!source) return;
 
     image.classList.add("deferred-image");
-    image.addEventListener("load", function () {
+    const revealImage = function () {
         image.classList.add("is-loaded");
-    }, { once: true });
-    image.addEventListener("error", function () {
-        image.classList.add("is-loaded");
-    }, { once: true });
+    };
+    image.addEventListener("load", revealImage, { once: true });
+    image.addEventListener("error", revealImage, { once: true });
     image.src = source;
     image.removeAttribute("data-src");
+    if (image.complete) revealImage();
     if (deferredImageObserver) deferredImageObserver.unobserve(image);
 }
 

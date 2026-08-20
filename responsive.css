@@ -12,12 +12,25 @@ img, video, iframe { max-width: 100%; }
 img[data-src],
 .deferred-image {
     opacity: 0;
-    background-color: #eef2f7;
 }
 
 .deferred-image.is-loaded {
     opacity: 1;
     transition: opacity .22s ease-in;
+}
+
+/* Reserve the real media area while lazy images wait to load. This prevents
+   alt-text-height placeholders from appearing as thin coloured strips. */
+.box-img,
+.pic img,
+.pics img,
+.picss img,
+.picsss img,
+.main-image,
+.thumb img,
+.colour-item img,
+.spec-image {
+    display: block;
 }
 
 /* One shared header on every page. This file loads after page-specific CSS. */
@@ -255,15 +268,46 @@ img[data-src],
 
     .diva-section, .streamline-section, .reborn-section, .laylines-section,
     .appeal-section, .embark-section, .tranquil-section, .radiance-section,
-    .graffiti-section, .vintage-section, .motif-section, .silky-section,
+    .graffiti-section, .vintage-section, .motif-section, .velvet-section,
+    .cloud-section, .silky-section,
     .mm15-section, .mm2-section, .topflex-section, .sportek-section,
     .square-section, .interlocking-section, .plancks-section {
-        gap: 30px;
+        width: 100%;
+        margin: 36px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
     }
-    .left-section, .right-section { min-width: 0; }
+
+    /* The HTML stays single-source. Flatten only the text/colour column at
+       tablet size so Flexbox can produce: name, description, images, colours. */
+    .left-section {
+        order: 3;
+        width: 100%;
+        min-width: 0;
+    }
+    .right-section {
+        display: contents;
+    }
+    .right-section > * { order: 6; }
+    .right-section > h1,
+    .right-section > #imagee,
+    .right-section > #sportek-room-image {
+        order: 1;
+        max-width: 100%;
+    }
+    .right-section > .description-box {
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+        margin-inline: auto;
+    }
+    .right-section > h2.section-title:first-of-type { order: 4; }
+    .right-section > .colour-grid { order: 5; }
+
     .colour-grid, .epdm-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .main-image { height: auto; max-height: 460px; object-fit: contain; background: #f7f7f7; }
+    .main-image { width: 100%; height: auto; max-height: 460px; object-fit: contain; }
     .spec-image { max-width: 100%; height: auto; }
 
     /* About */
@@ -317,8 +361,12 @@ img[data-src],
     .us-container { width: 100%; justify-content: center; padding: 0 18px; }
     .us { padding: 14px 22px; font-size: 18px; }
     .products p { padding: 0 20px; line-height: 1.6; }
-    .img-container, .imgs-container, .imgss-container, .imgsss-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 18px; gap: 18px; }
-    .pic img, .pics img { width: 100%; height: auto; aspect-ratio: 1; }
+    .img-container, .imgs-container, .imgss-container, .imgsss-container { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 18px; gap: 18px; }
+    .pic, .pics, .picss, .picsss,
+    .pic a, .pics a, .picss a, .picsss a { min-width: 0; width: 100%; }
+    .pic a, .pics a, .picss a, .picsss a { display: block; }
+    .pic img, .pics img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+    .picss img, .picsss img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
     .pic p, .pics p { font-size: 15px; }
     .explore-box { min-height: 100px; }
     .footer-section { padding: 22px 16px; text-align: center; }
@@ -347,18 +395,19 @@ img[data-src],
     .tab-content { overflow: hidden; }
     .diva-section, .streamline-section, .reborn-section, .laylines-section,
     .appeal-section, .embark-section, .tranquil-section, .radiance-section,
-    .graffiti-section, .vintage-section, .motif-section, .silky-section,
+    .graffiti-section, .vintage-section, .motif-section, .velvet-section,
+    .cloud-section, .silky-section,
     .mm15-section, .mm2-section, .topflex-section, .sportek-section,
-    .square-section, .interlocking-section, .plancks-section { display: flex; flex-direction: column; gap: 28px; }
-    .left-section, .right-section { width: 100%; }
-    .main-image { width: 100%; height: auto; max-height: 360px; }
+    .square-section, .interlocking-section, .plancks-section { width: 100%; margin: 0; gap: 28px; }
+    .left-section { width: 100%; }
+    .main-image { width: 100%; height: auto; max-height: 360px; aspect-ratio: 4 / 3; object-fit: cover; }
     .thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
     .thumb p, .colour-item p { font-size: 13px; overflow-wrap: anywhere; }
     .colour-grid, .epdm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .colour-item img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-    .right-section h1 { font-size: clamp(23px, 7vw, 32px); }
-    .description-box { padding: 16px; }
-    .description-box p { font-size: 16px; line-height: 1.6; }
+    .right-section h1 { margin: 0; font-size: clamp(23px, 7vw, 32px); text-align: center; }
+    .description-box { width: 100%; max-width: 100%; margin: 0 auto; padding: 18px; border-radius: 14px; }
+    .description-box p { margin: 0; font-size: 16px; line-height: 1.65; text-align: left; overflow-wrap: break-word; }
     .spec-image { width: 100%; }
     .catalogue-btn, .next-btn { display: inline-block; max-width: 100%; padding: 12px 18px; text-align: center; }
     .modal-image { max-width: 90vw; max-height: 72vh; }
