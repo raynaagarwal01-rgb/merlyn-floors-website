@@ -296,6 +296,10 @@ img[data-src],
         order: 1;
         max-width: 100%;
     }
+    .right-section > h1 {
+        width: 100%;
+        text-align: center;
+    }
     .right-section > .description-box {
         order: 2;
         width: 100%;
