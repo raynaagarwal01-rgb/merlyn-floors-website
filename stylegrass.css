@@ -326,8 +326,10 @@
 }
 
 .spec-image{
+    display:block;
     width:80%;
     max-width:900px;
+    margin-inline:auto;
     border-radius:15px;
     box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
