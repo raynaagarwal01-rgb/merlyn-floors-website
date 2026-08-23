@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://merlyn-floors.vercel.app/sitemap.xml
+Sitemap: https://merlynfloors.com/sitemap.xml
