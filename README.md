@@ -109,29 +109,36 @@ Since the website uses HTML, CSS, and JavaScript, it can be opened directly usin
 ## Project Structure
 
 ```text
-merlyn-floors/
+merlyn-floors-website/
 │
-├── index.html
-├── about.html
-├── contact.html
-├── projects.html
-├── carpet.html
+├── index.html            # Home
+├── about.html            # About Us
+├── projects.html         # Our Projects
+├── catalogues.html       # Our Catalogues
+├── contact.html          # Contact Us
+├── carpet.html           # Carpet Tiles
+├── wall.html             # Wall to Wall Carpet
+├── lvt.html              # LVT Flooring
+├── sports.html           # Sports Flooring
+├── gym.html              # Gym Flooring
+├── grass.html            # Artificial Grass
+├── pvc.html              # PVC Mat
 │
-├── css/
-│   └── style.css
+├── style*.css            # Page-specific stylesheets (e.g. stylecarpet.css, stylelvt.css)
+├── responsive.css        # Shared header and mobile/tablet/desktop rules (loaded last)
+├── script.js             # Menu, dropdown, tabs and image handling
 │
-├── js/
-│   └── script.js
+├── assets/web/           # Optimised WebP images
+├── images/               # Product, application and project images
+├── cata/                 # Catalogue PDFs and previews
 │
-├── images/
-│   ├── products/
-│   ├── catalogues/
-│   └── projects/
-│
+├── sitemap.xml           # Pages listed for search engines
+├── robots.txt            # Crawler rules and sitemap location
+├── favicon.png
 └── README.md
 ```
 
-> The actual file structure may vary depending on the current version of the project.
+> Stylesheets and scripts sit in the repository root; images are grouped in `assets/web`, `images` and `cata`.
 
 ## Future Improvements
 
